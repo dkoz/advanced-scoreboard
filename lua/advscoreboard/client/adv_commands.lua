@@ -15,7 +15,6 @@
 	Author: KoZ
 	Profile: http://steamcommunity.com/id/kozejin
 	Github: https://github.com/dkoz
-	Website: https://beskor.net
 --]]
 
 function ULXMenu( ply )

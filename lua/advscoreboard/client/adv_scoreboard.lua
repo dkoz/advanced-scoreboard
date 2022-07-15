@@ -15,7 +15,6 @@
 	Author: KoZ
 	Profile: http://steamcommunity.com/id/kozejin
 	Github: https://github.com/dkoz
-	Website: https://beskor.net
 --]]
 
 surface.CreateFont( "scoreboard_logo", {

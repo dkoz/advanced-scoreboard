@@ -27,9 +27,6 @@ scoreboard.config = {} -- Do not edit this line.
 scoreboard.config.title = "Advanced Scoreboard"
 -- Changes the click sound of your scoreboard.
 scoreboard.config.sound = "ui/buttonclick.wav"
--- Set to true if you don't want to disable fadnin.
--- This will force players fadmin_IsScoreboard to 0.
--- scoreboard.config.hidefadmin = true
 
 -- Change the color scheme of your scoreboard.
 scoreboard.config.mainbg = Color( 45, 45, 45, 255 )
@@ -39,14 +36,3 @@ scoreboard.config.trowbg = Color( 35, 35, 35, 255 )
 scoreboard.config.playerbg = Color( 45, 45, 45, 255 )
 scoreboard.config.cardbg = Color( 45, 45, 45, 255 )
 scoreboard.config.listbg = Color( 35, 35, 35, 255 )
-
---[[
--- Old feature
-scoreboard.config.groups = { -- Rank Configuration
-	['superadmin'] = {name = 'S-Admin', color = Color( 199, 44, 44 )},
-	['admin'] = {name = 'Admin', color = Color( 199, 44, 44 )},
-	['moderator'] = {name = 'Mod', color = Color( 241, 196, 15 )},
-	['supporter'] = {name = 'VIP', color = Color( 155, 89, 182 )},
-	['regular'] = {name = 'Regular', color = Color( 155, 89, 182 )}
-}
---]]
