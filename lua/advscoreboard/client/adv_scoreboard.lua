@@ -39,6 +39,12 @@ surface.CreateFont( "scoreboard_profile", {
 	antialias = true
 })
 
+-- Disables FAdmin Scoreboard
+hook.Add("InitPostEntity", "InitFadminRemove", function()
+    hook.Remove("ScoreboardShow", "FAdmin_scoreboard")
+    hook.Remove("ScoreboardHide", "FAdmin_scoreboard")
+end) 
+
 local function ScoreboardShow()
 	gui.EnableScreenClicker( true )
 
