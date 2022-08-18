@@ -135,7 +135,11 @@ local function ScoreboardShow()
 		framerow.DoRightClick = function()
 			surface.PlaySound( scoreboard.config.sound )
 			if IsValid( v ) then
-				ULXMenu( v )
+				if scoreboard.config.mode == "ulx" then
+					ULXMenu( v )
+				elseif scoreboard.config.mode == "sam" then
+					SAMMenu( v )
+				end
 			end
 		end
 

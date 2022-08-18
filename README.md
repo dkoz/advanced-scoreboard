@@ -3,13 +3,13 @@ A simple scoreboard for DarkRP. Easy to install by just dragging and dropping in
 
 Features:
 - Profile cards by left clicking on players name.
-- Quick ULX Commands Menu by right clicking players name.
-- Quick copy steamid using same ULX Menu.
+- Support for multiple admin mods (ULX and SAM Admin)
+- Quick access menu to admin commands by right clicking players name.
+- Quick copy steamid using same admin menu.
 - Easy to use configuration file for scoreboard colors.
 
 Planned Updates:
-- Adding more configuration options
-- Add support for more admin mods.
+- Adding more configuration options.
 - Updating visuals of profile cards.
 - Adding more features to scoreboard.
 

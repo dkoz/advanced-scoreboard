@@ -15,7 +15,6 @@
 	Author: KoZ
 	Profile: http://steamcommunity.com/id/kozejin
 	Github: https://github.com/dkoz
-	Website: https://beskor.net
 --]]
 
 scoreboard = {} or scoreboard -- Do not edit this line.
@@ -27,6 +26,8 @@ scoreboard.config = {} -- Do not edit this line.
 scoreboard.config.title = "Advanced Scoreboard"
 -- Changes the click sound of your scoreboard.
 scoreboard.config.sound = "ui/buttonclick.wav"
+-- Change between SAM or ULX Admin Mods
+scoreboard.config.mode = "ulx"
 
 -- Change the color scheme of your scoreboard.
 scoreboard.config.mainbg = Color( 45, 45, 45, 255 )
