@@ -17,15 +17,19 @@
 	Github: https://github.com/dkoz
 --]]
 
-if SERVER then
+if  (SERVER) then
 	AddCSLuaFile("advscoreboard/adv_config.lua")
-	AddCSLuaFile("advscoreboard/client/adv_commands.lua")
+	AddCSLuaFile("advscoreboard/client/adv_ulxmodule.lua")
+	AddCSLuaFile("advscoreboard/client/adv_sammodule.lua")
+	AddCSLuaFile("advscoreboard/client/adv_profilecard.lua")
 	AddCSLuaFile("advscoreboard/client/adv_scoreboard.lua")
 	include("advscoreboard/adv_config.lua")
 end
 
-if CLIENT then
+if (CLIENT) then
 	include("advscoreboard/adv_config.lua")
-	include("advscoreboard/client/adv_commands.lua")
+	include("advscoreboard/client/adv_ulxmodule.lua")
+	include("advscoreboard/client/adv_sammodule.lua")
+	include("advscoreboard/client/adv_profilecard.lua")
 	include("advscoreboard/client/adv_scoreboard.lua")
 end
