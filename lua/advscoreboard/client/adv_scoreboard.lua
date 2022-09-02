@@ -43,7 +43,7 @@ surface.CreateFont( "scoreboard_profile", {
 hook.Add("InitPostEntity", "InitFadminRemove", function()
     hook.Remove("ScoreboardShow", "FAdmin_scoreboard")
     hook.Remove("ScoreboardHide", "FAdmin_scoreboard")
-end) 
+end)
 
 local function ScoreboardShow()
 	gui.EnableScreenClicker( true )
@@ -71,14 +71,17 @@ local function ScoreboardShow()
 		draw.SimpleText( tostring( os.date() ), "scoreboard_text", framelogo:GetWide() - 20, 12.5, Color( 255, 255, 255 ), TEXT_ALIGN_RIGHT, TEXT_ALIGN_BOTTOM )
 	end
 	
+	local colortop = Color(255, 255, 255)
+	
 	local frametrow = vgui.Create( "DPanel", framemain )
 	frametrow:SetPos( 5, h / 7 )
 	frametrow:SetSize( w + 10, 30 )
 	frametrow.Paint = function()
 		draw.RoundedBox( 0, 0, 0, frametrow:GetWide() - 20, frametrow:GetTall(), scoreboard.config.trowbg )
-		draw.SimpleText( "Name", "scoreboard_text", 40, 6, Color( 255, 255, 255 ) )
-		draw.SimpleText( "Job", "scoreboard_text", frametrow:GetWide() / 2, 22, Color( 255, 255, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM )
-		draw.SimpleText( "Ping", "scoreboard_text", frametrow:GetWide() / 1.1, 22, Color( 255, 255, 255 ), TEXT_ALIGN_RIGHT, TEXT_ALIGN_BOTTOM )
+		draw.SimpleText( "Name", "scoreboard_text", 40, 6, colortop )
+		draw.SimpleText( "Rank", "scoreboard_text", frametrow:GetWide() / 1.4, 22, colortop, TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM )
+		draw.SimpleText( "Job", "scoreboard_text", frametrow:GetWide() / 2, 22, colortop, TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM )
+		draw.SimpleText( "Ping", "scoreboard_text", frametrow:GetWide() / 1.1, 22, colortop, TEXT_ALIGN_RIGHT, TEXT_ALIGN_BOTTOM )
 	end
 	
 	local framelist = vgui.Create( "DPanelList", framemain )
@@ -107,7 +110,22 @@ local function ScoreboardShow()
         end
     end
 	
-	for k, v in pairs( player.GetAll() ) do
+	local playerS = player.GetAll()
+	local groupOrder = scoreboard.config.grouporder
+	
+	if ( scoreboard.config.sorttype == "group" ) then
+		table.sort( playerS, function( a, b )
+			if ( a != nil and b != nil and groupOrder[ a:GetUserGroup() ] != nil and groupOrder[ b:GetUserGroup() ] != nil ) then
+				return groupOrder[ a:GetUserGroup() ] > groupOrder[ b:GetUserGroup() ]
+			end
+		end )
+	elseif ( scoreboard.config.sorttype == "team" ) then
+		table.sort( playerS, function( a, b )
+			return a:Team() > b:Team()
+		end )
+	end
+	
+	for k, v in pairs( playerS ) do
 		if not IsValid( v ) then continue end
 		
 		local framerow = vgui.Create( "DButton", framelist )
@@ -122,9 +140,10 @@ local function ScoreboardShow()
 			draw.RoundedBox( 0, 0, 0, framerow:GetWide() - 20, framerow:GetTall(), team.GetColor( v:Team() ) )
 			draw.RoundedBox( 0, 0, 0, framerow:GetWide() - 20, framerow:GetTall() / 2, Color( 255, 255, 255, 25 ) )
 			draw.SimpleText( v:Nick(), "scoreboard_text", 40, 6, Color(255, 255, 255) )
+			draw.SimpleText( framegroup( v:GetUserGroup(), false ), "scoreboard_text", framerow:GetWide() / 1.4, 22, framegroup( v:GetUserGroup(), true ), TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM)
 			draw.SimpleText( team.GetName( v:Team() ), "scoreboard_text", framerow:GetWide() / 2, 22, Color( 255, 255, 255 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM )
 			draw.SimpleText( v:Ping(), "scoreboard_text", framerow:GetWide() / 1.1, 22, Color( 255, 255, 255 ), TEXT_ALIGN_RIGHT, TEXT_ALIGN_BOTTOM )
-		end
+		end	
 		framerow.DoClick = function()
 			if IsValid( infoframe ) then infoframe:Remove() end
 			surface.PlaySound( scoreboard.config.sound )

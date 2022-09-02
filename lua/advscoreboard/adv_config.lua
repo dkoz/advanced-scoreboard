@@ -37,3 +37,21 @@ scoreboard.config.trowbg = Color( 35, 35, 35, 255 )
 scoreboard.config.playerbg = Color( 45, 45, 45, 255 )
 scoreboard.config.cardbg = Color( 45, 45, 45, 255 )
 scoreboard.config.listbg = Color( 35, 35, 35, 255 )
+
+-- Change how the scoreboard sorts players. (group/team)
+scoreboard.config.sorttype = "team"
+
+-- Change the hierarchy of how the groups are sorted.
+scoreboard.config.grouporder = {
+	['user'] = 1,
+	['operator'] = 2,
+	['admin'] = 3,
+	['superadmin'] = 4,
+}
+
+-- Change the rank configuration
+scoreboard.config.groups = {
+	['superadmin'] = { name = 'Owner', color = Color( 255, 255, 255 ) },
+	['admin'] = { name = "Admin", color = Color( 255, 255, 255 ) },
+	['moderator'] = { name = "Moderator", color = Color( 255, 255, 255 ) },
+}
